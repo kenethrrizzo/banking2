@@ -26,6 +26,7 @@ func (s *Service) GetCustomerByID(id uint) (*Customer, error) {
 	return s.repo.GetCustomerByID(id)
 }
 
+// Crea un nuevo cliente en la base de datos
 func (s *Service) CreateNewCustomer(cust Customer) (*Customer, error) {
 	if !cust.IsOfLegalAge() {
 		return nil, errors.New("the customer must be of legal age")
