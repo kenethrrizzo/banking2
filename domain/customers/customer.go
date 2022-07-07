@@ -25,6 +25,10 @@ func (c Customer) IsActive() bool {
 	return c.Status == 1
 }
 
+func (c Customer) ValidateIdentification() bool {
+	return c.IdentificationType != 'c' && len(c.IdentificationNumber) == 10 
+}
+
 func (c Customer) StatusAsText() string {
 	if c.Status == 1 {
 		return "Active"

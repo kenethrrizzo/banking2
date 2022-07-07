@@ -31,6 +31,9 @@ func (s *Service) CreateNewCustomer(cust Customer) (*Customer, error) {
 	if !cust.IsOfLegalAge() {
 		return nil, errors.New("the customer must be of legal age")
 	}
+	if cust.ValidateIdentification() {
+		return nil, errors.New("the identification number must be 10 digits long")
+	}
 	return s.repo.CreateCustomer(cust)
 }
 
