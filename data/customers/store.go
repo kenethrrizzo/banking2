@@ -20,9 +20,6 @@ func (s Store) GetAllCustomers() ([]cusd.Customer, error) {
 		return nil, err
 	}
 
-	name := "keneth"
-	print(name)
-
 	var custs = make([]cusd.Customer, len(results))
 
 	for i := range results {
