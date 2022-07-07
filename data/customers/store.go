@@ -19,7 +19,10 @@ func (s Store) GetAllCustomers() ([]cusd.Customer, error) {
 	if err := s.db.Find(&results).Error; err != nil {
 		return nil, err
 	}
-	
+
+	name := "keneth"
+	print(name)
+
 	var custs = make([]cusd.Customer, len(results))
 
 	for i := range results {
