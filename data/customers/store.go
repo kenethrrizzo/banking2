@@ -16,7 +16,9 @@ func New(db *gorm.DB) *Store {
 
 func (s Store) GetAllCustomers() ([]cusd.Customer, error) {
 	var results []Customer
-	if err := s.db.Find(&results).Error; err != nil {
+
+	err := s.db.Find(&results).Error
+	if err != nil {
 		return nil, err
 	}
 
@@ -30,21 +32,25 @@ func (s Store) GetAllCustomers() ([]cusd.Customer, error) {
 
 func (s Store) GetCustomerByID(id uint) (*cusd.Customer, error) {
 	var result Customer
-	if err := s.db.First(&result, id).Error; err != nil {
+
+	err := s.db.First(&result, id).Error
+	if err != nil {
 		return nil, err
 	}
 	return toDomainModel(&result), nil
 }
 
 func (s Store) CreateCustomer(cust cusd.Customer) (*cusd.Customer, error) {
-	if err := s.db.Create(toDBModel(&cust)).Error; err != nil {
+	err := s.db.Create(toDBModel(&cust)).Error
+	if err != nil {
 		return nil, err
 	}
 	return &cust, nil
 }
 
 func (s Store) UpdateCustomer(cust cusd.Customer) (*cusd.Customer, error) {
-	if err := s.db.Save(toDBModel(&cust)).Error; err != nil {
+	err := s.db.Save(toDBModel(&cust)).Error
+	if err != nil {
 		return nil, err
 	}
 	return &cust, nil
